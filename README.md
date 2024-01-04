@@ -7,7 +7,7 @@ A simple KDE widget that shows the title information about the Bing Picture of t
 Clone the repository and run the following commands:
 
 ```
-git clone git@github.comvictorballester7/title-bing-wallpaper.git
+git clone git@github.com:victorballester7/title-bing-wallpaper.git
 cd title-bing-wallpaper
 chmod +x install.sh
 ./install.sh
