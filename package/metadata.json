@@ -12,13 +12,13 @@
     "Description[es]": "Un widget sencillo para KDE que muestra el título y una pequeña información sobre la imagen del día proporcionada por Bing",
     "Description[fr]": "Un widget simple pour KDE qui affiche le titre et quelques informations sur l'image du jour fournie par Bing",
     "Icon": "daily-wallpaper",
-    "Id": "org.kde.plasma.titlebingwallpaper",
+    "Id": "com.github.victorballester7.titlebingwallpaper",
     "Name": "Title Bing Wallpaper",
     "Name[ca]": "Títol Wallpaper Bing",
     "Name[es]": "Título Wallpaper Bing",
     "Name[fr]": "Titre Wallpaper Bing",
     "Version": "1",
-    "Website": "https://github.com/victorballester7/title-bing-wallpaper"
+    "Website": "https://github.com/victorballester7/com.github.victorballester7.title-bing-wallpaper"
   },
   "X-Plasma-API": "declarativeappletscript",
   "XPackageStructure": "Plasma/Applet",
