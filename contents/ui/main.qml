@@ -18,18 +18,7 @@ Item {
     height: units.gridUnit * 4
     Plasmoid.fullRepresentation: null
     Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
-
-    PlasmaCore.DataSource {
-        id: executable
-
-        function exec(cmd) {
-            executable.connectSource(cmd);
-        }
-
-        engine: "executable"
-        connectedSources: []
-        onNewData: disconnectSource(sourceName)
-    }
+    Plasmoid.backgroundHints: PlasmaCore.Types.ShadowBackground | PlasmaCore.Types.ConfigurableBackground
 
     Plasmoid.compactRepresentation: CompactRepresentation {
     }
