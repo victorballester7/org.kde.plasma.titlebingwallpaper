@@ -29,3 +29,9 @@ rm -rf title-bing-wallpaper
 ## Photos
 
 Here are some photos of how the widget looks like:
+
+![WidgetinLattePanel](Images/panel-fr.png)
+A widget in a Latte Dock panel in French.
+
+![WidgetDesktop](Images/desktop-en.png)
+A widget in the desktop in English and in one line mode.
