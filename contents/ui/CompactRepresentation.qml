@@ -75,9 +75,9 @@ Item {
     Row {
         id: paintArea
 
-        // leftPadding: plasmoid.configuration.paddingLeft
-        // rightPadding: plasmoid.configuration.paddingRight
-        // topPadding: plasmoid.configuration.paddingTop
+        leftPadding: plasmoid.configuration.paddingLeft
+        rightPadding: plasmoid.configuration.paddingRight
+        topPadding: plasmoid.configuration.paddingTop
         anchors.centerIn: parent
 
         Label {
@@ -111,7 +111,8 @@ Item {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
         onClicked: {
-            root.executeCommand(); // Call the function using the root object
+            console.log("title: " + main.title);
+            root.executeCommand(main.title); // Call the function using the root object
         }
     }
 

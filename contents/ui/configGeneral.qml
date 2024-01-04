@@ -21,9 +21,29 @@ ColumnLayout {
     property alias cfg_showLocation: showLocation.checked
     property alias cfg_oneLineMode: oneLineMode.checked
     property alias cfg_locale: locale.currentText
+    property alias cfg_paddingRight: paddingRight.value
+    property alias cfg_paddingTop: paddingTop.value
+    property alias cfg_paddingLeft: paddingLeft.value
+    // property alias cfg_searchEngine: searchEngine.currentText
     property string defaultLocale: plasmoid.configuration.locale
 
     Kirigami.FormLayout {
+        // RowLayout {
+        //     Kirigami.FormData.label: i18n("Search Engine:")
+        //     QtControls.ComboBox {
+        //         id: locale
+        //         visible: Plasmoid.formFactor !== PlasmaCore.Types.Vertical
+        //         model: [i18n("google"), i18n("bing"), i18n("duckduckgo"), i18n("Ecosia"), i18n("Qwant"), i18n("Startpage")]
+        //         currentIndex: model.indexOf(i18n(defaultLocale))
+        //         onActivated: {
+        //             cfg_locale = currentText;
+        //         }
+        //     }
+        // }
+        // Item {
+        //     Kirigami.FormData.isSection: true
+        // }
+
         Layout.fillWidth: true
 
         RowLayout {
@@ -70,6 +90,70 @@ ColumnLayout {
 
             enabled: showLocation.checked
             text: i18n("Use one line mode")
+        }
+
+        Item {
+            Kirigami.FormData.isSection: true
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Left spacing:")
+
+            QtControls.SpinBox {
+                id: paddingLeft
+
+                from: 0
+                to: 30
+                editable: true
+
+                validator: IntValidator {
+                    locale: paddingLeft.locale.name
+                    bottom: Math.min(paddingLeft.from, paddingLeft.to)
+                    top: Math.max(paddingLeft.from, paddingLeft.to)
+                }
+
+            }
+
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Right spacing:")
+
+            QtControls.SpinBox {
+                id: paddingRight
+
+                from: 0
+                to: 30
+                editable: true
+
+                validator: IntValidator {
+                    locale: paddingRight.locale.name
+                    bottom: Math.min(paddingRight.from, paddingRight.to)
+                    top: Math.max(paddingRight.from, paddingRight.to)
+                }
+
+            }
+
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Top spacing:")
+
+            QtControls.SpinBox {
+                id: paddingTop
+
+                from: 0
+                to: 30
+                editable: true
+
+                validator: IntValidator {
+                    locale: paddingTop.locale.name
+                    bottom: Math.min(paddingTop.from, paddingTop.to)
+                    top: Math.max(paddingTop.from, paddingTop.to)
+                }
+
+            }
+
         }
 
         Item {

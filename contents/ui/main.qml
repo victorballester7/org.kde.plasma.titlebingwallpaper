@@ -8,17 +8,40 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.plasmoid 2.0
 
 Item {
+    // Plasmoid.toolTipItem: Loader {
+    //     id: tooltipLoader
+    //     source: ""
+    // }
+
     id: root
 
-    function executeCommand() {
-        executable.exec(plasmoid.configuration.command);
+    function executeCommand(text) {
+        let google = "https://www.google.com/search?q=";
+        google += text.replace(/ /g, "+");
+        let command = "xdg-open " + google;
+        executable.exec(command);
     }
 
+    // this removes the tooltip shown when hovering over the plasmoid
+    Plasmoid.toolTipSubText: ""
+    Plasmoid.toolTipMainText: ""
+    Plasmoid.backgroundHints: PlasmaCore.Types.ShadowBackground | PlasmaCore.Types.ConfigurableBackground
     width: units.gridUnit * 10
     height: units.gridUnit * 4
     Plasmoid.fullRepresentation: null
     Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
-    Plasmoid.backgroundHints: PlasmaCore.Types.ShadowBackground | PlasmaCore.Types.ConfigurableBackground
+
+    PlasmaCore.DataSource {
+        id: executable
+
+        function exec(cmd) {
+            executable.connectSource(cmd);
+        }
+
+        engine: "executable"
+        connectedSources: []
+        onNewData: disconnectSource(sourceName)
+    }
 
     Plasmoid.compactRepresentation: CompactRepresentation {
     }

@@ -22,6 +22,15 @@
       </choices>
       <default>fr-FR</default>
     </entry>
+    <entry name="searchEngine" type="String">
+      <label>Search engine to use.</label>
+      <choices name="Settings::searchEngine">
+        <choice name="Google" />
+        <choice name="Bing" />
+        <choice name="DuckDuckGo" />
+      </choices>
+      <default>Google</default>
+    </entry>
     <entry name="showLocation" type="Bool">
       <label>Whether to show or not location (city and country).</label>
       <default>true</default>
@@ -29,6 +38,18 @@
     <entry name="oneLineMode" type="Bool">
       <label>Whether or not to show the location next to the title.</label>
       <default>false</default>
+    </entry>
+    <entry name="paddingLeft" type="Int">
+      <label></label>
+      <default>10</default>
+    </entry>
+    <entry name="paddingRight" type="Int">
+      <label></label>
+      <default>10</default>
+    </entry>
+    <entry name="paddingTop" type="Int">
+      <label></label>
+      <default>0</default>
     </entry>
     <entry name="autoFontAndSize" type="Bool">
       <label>Use Plasma default font and automatically determine font size.</label>
