@@ -34,6 +34,10 @@ Here are some photos of how the widget looks like:
 
 A widget in a Latte Dock panel in French.
 
+<!-- add double space -->
+
+<br></br>
+
 ![WidgetDesktop](images/desktop-en.png)
 
 A widget in the desktop in English and in one line mode.
