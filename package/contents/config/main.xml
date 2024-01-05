@@ -17,19 +17,21 @@
         <choice name="fr-FR" />
         <choice name="it-IT" />
         <choice name="ja-JP" />
-        <choice name="zn-CN" />
-        <choice name="Other" />
+        <choice name="zh-CN" />
       </choices>
       <default>fr-FR</default>
     </entry>
     <entry name="searchEngine" type="String">
       <label>Search engine to use.</label>
       <choices name="Settings::searchEngine">
-        <choice name="Google" />
-        <choice name="Bing" />
-        <choice name="DuckDuckGo" />
+        <choice name="bing" />
+        <choice name="duckduckgo" />
+        <choice name="ecosia" />
+        <choice name="google" />
+        <choice name="qwant" />
+        <choice name="startpage" />
       </choices>
-      <default>Google</default>
+      <default>google</default>
     </entry>
     <entry name="showLocation" type="Bool">
       <label>Whether to show or not location (city and country).</label>

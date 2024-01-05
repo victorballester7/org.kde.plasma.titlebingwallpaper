@@ -24,40 +24,43 @@ ColumnLayout {
     property alias cfg_paddingRight: paddingRight.value
     property alias cfg_paddingTop: paddingTop.value
     property alias cfg_paddingLeft: paddingLeft.value
-    // property alias cfg_searchEngine: searchEngine.currentText
+    property alias cfg_searchEngine: searchEngine.currentText
     property string defaultLocale: plasmoid.configuration.locale
+    property string defaultSearchEngine: plasmoid.configuration.searchEngine
 
     Kirigami.FormLayout {
-        // RowLayout {
-        //     Kirigami.FormData.label: i18n("Search Engine:")
-        //     QtControls.ComboBox {
-        //         id: locale
-        //         visible: Plasmoid.formFactor !== PlasmaCore.Types.Vertical
-        //         model: [i18n("google"), i18n("bing"), i18n("duckduckgo"), i18n("Ecosia"), i18n("Qwant"), i18n("Startpage")]
-        //         currentIndex: model.indexOf(i18n(defaultLocale))
-        //         onActivated: {
-        //             cfg_locale = currentText;
-        //         }
-        //     }
-        // }
-        // Item {
-        //     Kirigami.FormData.isSection: true
-        // }
-
         Layout.fillWidth: true
 
         RowLayout {
             Kirigami.FormData.label: i18n("Locale:")
 
             QtControls.ComboBox {
+                // onActivated: {
+                //     cfg_locale = currentText;
+                // }
+
                 id: locale
 
                 visible: Plasmoid.formFactor !== PlasmaCore.Types.Vertical
-                model: [i18n("de-DE"), i18n("en-CA"), i18n("en-US"), i18n("en-GB"), i18n("es-ES"), i18n("fr-CA"), i18n("fr-FR"), i18n("it-IT"), i18n("ja-JP"), i18n("zn-CN"), i18n("Other")]
+                model: [i18n("de-DE"), i18n("en-CA"), i18n("en-US"), i18n("en-GB"), i18n("es-ES"), i18n("fr-CA"), i18n("fr-FR"), i18n("it-IT"), i18n("ja-JP"), i18n("zh-CN")]
                 currentIndex: model.indexOf(i18n(defaultLocale))
-                onActivated: {
-                    cfg_locale = currentText;
-                }
+            }
+
+        }
+
+        Item {
+            Kirigami.FormData.isSection: true
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Search Engine:")
+
+            QtControls.ComboBox {
+                id: searchEngine
+
+                visible: Plasmoid.formFactor !== PlasmaCore.Types.Vertical
+                model: [i18n("bing"), i18n("duckduckgo"), i18n("ecosia"), i18n("google"), i18n("qwant"), i18n("startpage")]
+                currentIndex: model.indexOf(i18n(defaultSearchEngine))
             }
 
         }

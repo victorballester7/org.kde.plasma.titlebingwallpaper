@@ -9,14 +9,6 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.plasmoid 2.0
 
 Item {
-    // Connections {
-    //     target: main
-    //     onShowLocationChanged: {
-    //         updateTitle();
-    //     }
-    // }
-    // console.log("hola bon dia");
-
     id: main
 
     property bool showLocation: plasmoid.configuration.showLocation
@@ -25,6 +17,8 @@ Item {
     property string locale: plasmoid.configuration.locale // if it is a different string form the default ones, then it will return an english version of the image
     property string title: ""
     property string location: ""
+    property bool textDone: false // I need this property to know if the text has been already updated or not.
+    property int reloadIntervalMs: 500
 
     function updateTitle() {
         if (plasmoid.configuration.showLocation) {
@@ -40,7 +34,7 @@ Item {
     function updateRequest() {
         XHR.sendRequest(url + locale, function(response) {
             let isPlainText = response.contentType.length === 0;
-            if (isPlainText) {
+            if (isPlainText && response.content !== "") {
                 // After the execution of this line, fullTitle will contain an array where the first element (fullTitle[0]) is the entire matched string, and the second element (fullTitle[1]) is the content between the <copyright> tags. This is why I need to use the [1].
                 let fullTitle = response.content.match(/<copyright>(.+?)<\/copyright>/)[1];
                 // now fullTitle is like "Pont du Golden Gate, San Francisco, Californie, États-Unis (© Jim Patterson/Tandem Stills + Motion)". I want to remove the part after the '(' character.
@@ -52,6 +46,16 @@ Item {
         });
     }
 
+    function getLastReloadedMs() {
+        if (!lastReloadedMsMap)
+            return new Date().getTime();
+
+        return lastReloadedMsMap[cacheKey];
+    }
+
+    function tryReload() {
+    }
+
     onShowLocationChanged: {
         updateTitle();
     }
@@ -59,7 +63,6 @@ Item {
         updateTitle();
     }
     onLocaleChanged: {
-        console.log("localeL: " + locale);
         updateRequest();
     }
     Layout.fillHeight: false
@@ -70,6 +73,15 @@ Item {
     Layout.maximumHeight: Layout.minimumHeight
     Component.onCompleted: {
         updateRequest();
+    }
+
+    Timer {
+        interval: main.reloadIntervalMs
+        running: true
+        repeat: true
+        onTriggered: {
+            updateRequest();
+        }
     }
 
     Row {
