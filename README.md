@@ -2,9 +2,9 @@
 
 A simple KDE widget that shows the title information about the Bing Picture of the Day wallpaper.
 
-## Installation
+## Installation or update
 
-Clone the repository and run the following commands:
+Clone the repository and run the following commands for installing or updating the widget:
 
 ```
 git clone git@github.com:victorballester7/title-bing-wallpaper.git
