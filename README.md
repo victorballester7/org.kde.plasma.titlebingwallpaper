@@ -1,6 +1,6 @@
 # Title bing wallpaper
 
-A simple KDE widget that shows the title information about the Bing Picture of the Day wallpaper.
+A simple KDE widget that shows the title information about the Bing Picture of the Day wallpaper. If you want to know more about the Bing Picture of the Day, you can click on the widget and it will open your default browser with more information about the picture.
 
 ## Installation or update
 
