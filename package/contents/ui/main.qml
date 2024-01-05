@@ -15,10 +15,29 @@ Item {
 
     id: root
 
+    property string bing: "https://www.bing.com/search?q="
+    property string duckduckgo: "https://duckduckgo.com/?q="
+    property string ecosia: "https://www.ecosia.org/search?q="
+    property string google: "https://www.google.com/search?q="
+    property string qwant: "https://www.qwant.com/?q="
+    property string startpage: "https://www.startpage.com/do/search?q="
+
     function executeCommand(text) {
-        let google = "https://www.google.com/search?q=";
-        google += text.replace(/ /g, "+");
-        let command = "xdg-open " + google;
+        let command = "";
+        if (plasmoid.configuration.searchEngine === "bing")
+            command = bing;
+        else if (plasmoid.configuration.searchEngine === "duckduckgo")
+            command = duckduckgo;
+        else if (plasmoid.configuration.searchEngine === "ecosia")
+            command = ecosia;
+        else if (plasmoid.configuration.searchEngine === "google")
+            command = google;
+        else if (plasmoid.configuration.searchEngine === "qwant")
+            command = qwant;
+        else if (plasmoid.configuration.searchEngine === "startpage")
+            command = startpage;
+        command += text.replace(/ /g, "+"); // replace spaces with +
+        command = "xdg-open " + command;
         executable.exec(command);
     }
 

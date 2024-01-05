@@ -31,7 +31,7 @@
         <choice name="qwant" />
         <choice name="startpage" />
       </choices>
-      <default>google</default>
+      <default>duckduckgo</default>
     </entry>
     <entry name="showLocation" type="Bool">
       <label>Whether to show or not location (city and country).</label>
