@@ -18,7 +18,7 @@ Item {
     property string title: ""
     property string location: ""
     property bool textDone: false // I need this property to know if the text has been already updated or not.
-    property int reloadIntervalMs: 500
+    property int reloadIntervalMs: 5000 // time in milliseconds between two requests (to reload the text)
 
     function updateTitle() {
         if (plasmoid.configuration.showLocation) {
@@ -39,21 +39,20 @@ Item {
                 let fullTitle = response.content.match(/<copyright>(.+?)<\/copyright>/)[1];
                 // now fullTitle is like "Pont du Golden Gate, San Francisco, Californie, États-Unis (© Jim Patterson/Tandem Stills + Motion)". I want to remove the part after the '(' character.
                 fullTitle = fullTitle.substring(0, fullTitle.indexOf(" ("));
-                title = fullTitle.substring(0, fullTitle.indexOf(","));
-                location = fullTitle.substring(fullTitle.indexOf(",") + 2);
+                let numberOfCommas = fullTitle.split(",").length - 1;
+                if (numberOfCommas === 0) {
+                    title = fullTitle;
+                    location = "";
+                } else {
+                    title = fullTitle.substring(0, fullTitle.indexOf(","));
+                    location = fullTitle.substring(fullTitle.indexOf(",") + 2);
+                }
+                console.log("fullTitle: " + fullTitle + ".");
+                console.log("title: " + title + ".");
+                console.log("location: " + location + ".");
             }
             updateTitle();
         });
-    }
-
-    function getLastReloadedMs() {
-        if (!lastReloadedMsMap)
-            return new Date().getTime();
-
-        return lastReloadedMsMap[cacheKey];
-    }
-
-    function tryReload() {
     }
 
     onShowLocationChanged: {
