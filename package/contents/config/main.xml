@@ -37,6 +37,10 @@
       <label>Whether to show or not location (city and country).</label>
       <default>true</default>
     </entry>
+    <entry name="emptyLocation" type="Bool">
+      <label>Whether to show or not location when no location is available.</label>
+      <default>false</default>
+    </entry>
     <entry name="oneLineMode" type="Bool">
       <label>Whether or not to show the location next to the title.</label>
       <default>false</default>

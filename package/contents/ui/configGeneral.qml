@@ -19,6 +19,7 @@ ColumnLayout {
     property alias cfg_fontStyleName: fontDialog.fontChosen.styleName
     property alias cfg_fontSize: fontDialog.fontChosen.pointSize
     property alias cfg_showLocation: showLocation.checked
+    property bool emptyLocation: plasmoid.configuration.emptyLocation
     property alias cfg_oneLineMode: oneLineMode.checked
     property alias cfg_locale: locale.currentText
     property alias cfg_paddingRight: paddingRight.value
@@ -35,10 +36,6 @@ ColumnLayout {
             Kirigami.FormData.label: i18n("Locale:")
 
             QtControls.ComboBox {
-                // onActivated: {
-                //     cfg_locale = currentText;
-                // }
-
                 id: locale
 
                 visible: Plasmoid.formFactor !== PlasmaCore.Types.Vertical
@@ -70,22 +67,23 @@ ColumnLayout {
         }
 
         RowLayout {
-            // QtControls.ComboBox {
-            //     id: dateDisplayFormat
-            //     enabled: showLocation.checked
-            //     visible: Plasmoid.formFactor !== PlasmaCore.Types.Vertical
-            //     model: [i18n("Adaptive location"), i18n("Always beside time"), i18n("Always below time")]
-            //     onActivated: cfg_dateDisplayFormat = currentIndex
-            // }
-
             Kirigami.FormData.label: i18n("Information:")
 
             QtControls.CheckBox {
                 id: showLocation
 
+                enabled: !emptyLocation
                 text: i18n("Show location")
             }
 
+        }
+
+        QtControls.Label {
+            text: i18n("The item being blocked means that there is no information available for the location of the picture of the day.")
+            Layout.fillWidth: true
+            visible: !showLocation.enabled
+            wrapMode: Text.Wrap
+            font: PlasmaCore.Theme.smallestFont
         }
 
         QtControls.CheckBox {

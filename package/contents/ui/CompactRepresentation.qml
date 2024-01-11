@@ -17,7 +17,6 @@ Item {
     property string locale: plasmoid.configuration.locale // if it is a different string form the default ones, then it will return an english version of the image
     property string title: ""
     property string location: ""
-    property bool textDone: false // I need this property to know if the text has been already updated or not.
     property int reloadIntervalMs: 5000 // time in milliseconds between two requests (to reload the text)
 
     function updateTitle() {
@@ -49,6 +48,8 @@ Item {
                     location = "";
                     // automatically set the oneLineMode to true if there is no comma in the title
                     plasmoid.configuration.oneLineMode = true;
+                    plasmoid.configuration.showLocation = false;
+                    plasmoid.configuration.emptyLocation = true;
                 } else {
                     title = fullTitle.substring(0, fullTitle.indexOf(","));
                     location = fullTitle.substring(fullTitle.indexOf(",") + 2);
@@ -125,7 +126,6 @@ Item {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
         onClicked: {
-            console.log("title: " + main.title);
             root.executeCommand(main.title); // Call the function using the root object
         }
     }
