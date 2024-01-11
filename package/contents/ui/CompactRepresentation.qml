@@ -22,10 +22,14 @@ Item {
 
     function updateTitle() {
         if (plasmoid.configuration.showLocation) {
-            if (plasmoid.configuration.oneLineMode)
-                textLabel.text = title + ", " + location;
-            else
+            if (plasmoid.configuration.oneLineMode) {
+                if (location === "")
+                    textLabel.text = title;
+                else
+                    textLabel.text = title + ", " + location;
+            } else {
                 textLabel.text = title + "\n" + location;
+            }
         } else {
             textLabel.text = title;
         }
@@ -43,13 +47,12 @@ Item {
                 if (numberOfCommas === 0) {
                     title = fullTitle;
                     location = "";
+                    // automatically set the oneLineMode to true if there is no comma in the title
+                    plasmoid.configuration.oneLineMode = true;
                 } else {
                     title = fullTitle.substring(0, fullTitle.indexOf(","));
                     location = fullTitle.substring(fullTitle.indexOf(",") + 2);
                 }
-                console.log("fullTitle: " + fullTitle + ".");
-                console.log("title: " + title + ".");
-                console.log("location: " + location + ".");
             }
             updateTitle();
         });
