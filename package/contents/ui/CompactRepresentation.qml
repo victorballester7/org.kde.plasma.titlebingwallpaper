@@ -45,7 +45,6 @@ Item {
                 let fullTitle = response.content.match(/<copyright>(.+?)<\/copyright>/)[1];
                 // now fullTitle is like "Pont du Golden Gate, San Francisco, Californie, États-Unis (© Jim Patterson/Tandem Stills + Motion)". I want to remove the part after the '(' character.
                 fullTitle = fullTitle.substring(0, fullTitle.indexOf(" ("));
-                fullTitle = "Pont du Golden Gate";
                 let numberOfCommas = fullTitle.split(",").length - 1;
                 if (numberOfCommas === 0) {
                     title = fullTitle;
