@@ -27,7 +27,10 @@ Item {
                 else
                     textLabel.text = title + ", " + location;
             } else {
-                textLabel.text = title + "\n" + location;
+                if (location === "")
+                    textLabel.text = title;
+                else
+                    textLabel.text = title + "\n" + location;
             }
         } else {
             textLabel.text = title;
@@ -42,17 +45,17 @@ Item {
                 let fullTitle = response.content.match(/<copyright>(.+?)<\/copyright>/)[1];
                 // now fullTitle is like "Pont du Golden Gate, San Francisco, Californie, États-Unis (© Jim Patterson/Tandem Stills + Motion)". I want to remove the part after the '(' character.
                 fullTitle = fullTitle.substring(0, fullTitle.indexOf(" ("));
+                fullTitle = "Pont du Golden Gate";
                 let numberOfCommas = fullTitle.split(",").length - 1;
                 if (numberOfCommas === 0) {
                     title = fullTitle;
                     location = "";
                     // automatically set the oneLineMode to true if there is no comma in the title
-                    plasmoid.configuration.oneLineMode = true;
-                    plasmoid.configuration.showLocation = false;
                     plasmoid.configuration.emptyLocation = true;
                 } else {
                     title = fullTitle.substring(0, fullTitle.indexOf(","));
                     location = fullTitle.substring(fullTitle.indexOf(",") + 2);
+                    plasmoid.configuration.emptyLocation = false;
                 }
             }
             updateTitle();
