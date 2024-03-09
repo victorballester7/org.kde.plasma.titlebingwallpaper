@@ -1,14 +1,15 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.3 as QtControls
-import QtQuick.Dialogs 1.1 as QtDialogs
-import QtQuick.Layouts 1.15
-import org.kde.kirigami 2.5 as Kirigami
-import org.kde.kquickcontrolsaddons 2.0 // For KCMShell
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.workspace.calendar 2.0 as PlasmaCalendar
+import QtQuick
+import QtQuick.Controls as QtControls
+import QtQuick.Dialogs as QtDialogs
+import QtQuick.Layouts
+import org.kde.config
+import org.kde.kcmutils
+import org.kde.kirigami as Kirigami
+import org.kde.kquickcontrolsaddons // For KCMShell
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.plasmoid
 
-ColumnLayout {
+ScrollViewKCM {
     id: generalConfigPage
 
     property alias cfg_autoFontAndSize: autoFontAndSizeRadioButton.checked
@@ -19,15 +20,15 @@ ColumnLayout {
     property alias cfg_fontStyleName: fontDialog.fontChosen.styleName
     property alias cfg_fontSize: fontDialog.fontChosen.pointSize
     property alias cfg_showLocation: showLocation.checked
-    property bool emptyLocation: plasmoid.configuration.emptyLocation
+    property bool emptyLocation: Plasmoid.configuration.emptyLocation
     property alias cfg_oneLineMode: oneLineMode.checked
     property alias cfg_locale: locale.currentText
     property alias cfg_paddingRight: paddingRight.value
     property alias cfg_paddingTop: paddingTop.value
     property alias cfg_paddingLeft: paddingLeft.value
     property alias cfg_searchEngine: searchEngine.currentText
-    property string defaultLocale: plasmoid.configuration.locale
-    property string defaultSearchEngine: plasmoid.configuration.searchEngine
+    property string defaultLocale: Plasmoid.configuration.locale
+    property string defaultSearchEngine: Plasmoid.configuration.searchEngine
 
     Kirigami.FormLayout {
         Layout.fillWidth: true

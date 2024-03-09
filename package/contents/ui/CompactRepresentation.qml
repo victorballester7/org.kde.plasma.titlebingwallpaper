@@ -1,12 +1,12 @@
 import "../src/request.js" as XHR
-import QtQuick 2.6
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.1
-import org.kde.kquickcontrolsaddons 2.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.extras 2.0 as PlasmaExtras
-import org.kde.plasma.plasmoid 2.0
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import org.kde.kquickcontrolsaddons
+import org.kde.plasma.components as PlasmaComponents
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.extras as PlasmaExtras
+import org.kde.plasma.plasmoid
 
 Item {
     id: main
@@ -99,7 +99,6 @@ Item {
 
         Label {
             // id: textLabel
-
             // text: "" // Call the function using the root object (now it's not correct)
             // color: theme.textColor
             // font.bold: plasmoid.configuration.bold

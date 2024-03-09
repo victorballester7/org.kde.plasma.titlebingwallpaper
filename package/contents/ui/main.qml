@@ -1,18 +1,17 @@
-import QtQuick 2.6
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.1
-import org.kde.kquickcontrolsaddons 2.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.extras 2.0 as PlasmaExtras
-import org.kde.plasma.plasmoid 2.0
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import org.kde.config // KAuthorized
+import org.kde.kcmutils // KCMLauncher
+import org.kde.kirigami as Kirigami
+import org.kde.kquickcontrolsaddons
+import org.kde.plasma.components as PlasmaComponents
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.extras as PlasmaExtras
+import org.kde.plasma.plasma5support as Plasma5Support
+import org.kde.plasma.plasmoid
 
-Item {
-    // Plasmoid.toolTipItem: Loader {
-    //     id: tooltipLoader
-    //     source: ""
-    // }
-
+PlasmoidItem {
     id: root
 
     property string bing: "https://www.bing.com/search?q="
@@ -24,33 +23,32 @@ Item {
 
     function executeCommand(text) {
         let command = "";
-        if (plasmoid.configuration.searchEngine === "bing")
+        if (Plasmoid.configuration.searchEngine === "bing")
             command = bing;
-        else if (plasmoid.configuration.searchEngine === "duckduckgo")
+        else if (Plasmoid.configuration.searchEngine === "duckduckgo")
             command = duckduckgo;
-        else if (plasmoid.configuration.searchEngine === "ecosia")
+        else if (Plasmoid.configuration.searchEngine === "ecosia")
             command = ecosia;
-        else if (plasmoid.configuration.searchEngine === "google")
+        else if (Plasmoid.configuration.searchEngine === "google")
             command = google;
-        else if (plasmoid.configuration.searchEngine === "qwant")
+        else if (Plasmoid.configuration.searchEngine === "qwant")
             command = qwant;
-        else if (plasmoid.configuration.searchEngine === "startpage")
+        else if (Plasmoid.configuration.searchEngine === "startpage")
             command = startpage;
         command += text.replace(/ /g, "+"); // replace spaces with +
         command = "xdg-open " + command;
         executable.exec(command);
     }
 
-    // this removes the tooltip shown when hovering over the plasmoid
-    Plasmoid.toolTipSubText: ""
-    Plasmoid.toolTipMainText: ""
+    // this removes the tooltip shown when hovering over the Plasmoid
+    toolTipSubText: ""
+    toolTipMainText: ""
     Plasmoid.backgroundHints: PlasmaCore.Types.ShadowBackground | PlasmaCore.Types.ConfigurableBackground
-    width: units.gridUnit * 10
-    height: units.gridUnit * 4
-    Plasmoid.fullRepresentation: null
-    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    width: Kirigami.Units.gridUnit * 10
+    height: Kirigami.Units.gridUnit * 4
+    preferredRepresentation: compactRepresentation
 
-    PlasmaCore.DataSource {
+    Plasma5Support.DataSource {
         id: executable
 
         function exec(cmd) {
@@ -62,7 +60,11 @@ Item {
         onNewData: disconnectSource(sourceName)
     }
 
-    Plasmoid.compactRepresentation: CompactRepresentation {
+    // empty item to prevent the full representation from being shown
+    fullRepresentation: Item {
+    }
+
+    compactRepresentation: CompactRepresentation {
     }
 
 }
