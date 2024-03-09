@@ -1,3 +1,8 @@
 # copy contents inside /package to .local/share/plasma/plasmoids/
-mkdir -p ~/.local/share/plasma/plasmoids/com.github.victorballester7.titlebingwallpaper
-cp -r ./package/* ~/.local/share/plasma/plasmoids/com.github.victorballester7.titlebingwallpaper
+folder="com.github.victorballester7.titlebingwallpaper"
+dir="$HOME/.local/share/plasma/plasmoids/$folder"
+# remove old files
+rm -rf $dir
+# copy new files
+mkdir -p $dir
+cp -r ./package/* $dir
