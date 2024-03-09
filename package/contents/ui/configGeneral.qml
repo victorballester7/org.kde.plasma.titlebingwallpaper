@@ -198,7 +198,7 @@ ScrollViewKCM {
                 icon.name: "settings-configure"
                 enabled: manualFontAndSizeRadioButton.checked
                 onClicked: {
-                    fontDialog.font = fontDialog.fontChosen;
+                    fontDialog.selectedFont = fontDialog.fontChosen;
                     fontDialog.open();
                 }
             }
@@ -224,8 +224,9 @@ ScrollViewKCM {
 
         title: i18nc("@title:window", "Choose a Font")
         modality: Qt.WindowModal
+        parentWindow: generalConfigPage.Window.window
         onAccepted: {
-            fontChosen = font;
+            fontChosen = selectedFont;
         }
     }
 
