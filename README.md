@@ -39,3 +39,7 @@ A widget in a Latte Dock panel in French.
 ![WidgetDesktop](images/desktop-en.png)
 
 A widget in the desktop in English and in one line mode.
+
+![WidgetPanel6](images/plasma6.png)
+
+A widget in a panel of Plasma 6 in French (coloured by another widget)
